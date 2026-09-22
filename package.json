@@ -1,0 +1,17 @@
+{
+  "name": "mimi-store",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "build": "npm --workspace client run build",
+    "dev": "npm --workspace client run dev",
+    "start": "npm --workspace server start",
+    "test": "npm --workspace server test"
+  }
+}

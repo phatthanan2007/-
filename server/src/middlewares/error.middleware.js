@@ -15,7 +15,7 @@ const errorHandler = (err, req, res, next) => {
       return res.status(409).json({ message: "Email already registered" });
     }
     if (err.name === "MulterError") {
-      return res.status(400).json({ message: "Image upload failed: file must be 5 MB or smaller" });
+      return res.status(400).json({ message: "Image upload failed: file must be 4 MB or smaller" });
     }
 
     res.status(500).json({ message: err.message || "Server error" });
