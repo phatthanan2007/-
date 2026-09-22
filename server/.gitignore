@@ -1,0 +1,11 @@
+# Server-generated files and deployment secrets
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+.vercel/
+
+# Uploaded media; retain placeholders only.
+public/uploads/*/*
+!public/uploads/**/.gitkeep

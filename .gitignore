@@ -1,0 +1,11 @@
+# Repository-wide generated files and deployment secrets
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+.vercel/
+
+# Uploaded media; retain placeholders only.
+**/uploads/*/*
+!**/uploads/**/.gitkeep
