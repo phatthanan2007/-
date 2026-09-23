@@ -7,12 +7,16 @@ const response = () => ({ statusCode: 200, body: null, status(code) { this.statu
 
 test("uploadProductImage returns the public Vercel Blob URL", async () => {
   const originalPut = blob.put;
+  const originalToken = process.env.BLOB_READ_WRITE_TOKEN;
+  process.env.BLOB_READ_WRITE_TOKEN = "test-token";
   blob.put = async () => ({ url: "https://store.public.blob.vercel-storage.com/products/plush.png" });
   const res = response();
   await uploadProductImage({ file: { originalname: "plush.png", mimetype: "image/png", buffer: Buffer.from("image") } }, res, assert.fail);
   assert.equal(res.statusCode, 201);
   assert.equal(res.body.url, "https://store.public.blob.vercel-storage.com/products/plush.png");
   blob.put = originalPut;
+  if (originalToken === undefined) delete process.env.BLOB_READ_WRITE_TOKEN;
+  else process.env.BLOB_READ_WRITE_TOKEN = originalToken;
 });
 
 test("uploadProductImage rejects a missing file", async () => {

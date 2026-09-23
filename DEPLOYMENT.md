@@ -19,6 +19,10 @@ This repository deploys as one Vercel project. The Vite client is built to `clie
 
 Copy `server/.env.example` to `server/.env` and provide local development values. Do not commit it. To test the Vercel layout locally, use `npx vercel dev` after linking the project and pulling its environment variables.
 
+## Upload behavior
+
+The authenticated admin product-image endpoint (`POST /api/uploads/products`) holds uploads only in memory long enough to write them directly to Vercel Blob; it never writes an upload to the Vercel Function filesystem. It returns the public Blob URL, which the product record then stores in MongoDB Atlas. Images must be 4 MB or smaller to remain under the Vercel Function request-body limit.
+
 ## Migrating existing local uploads
 
 Old product image URLs beginning with `/uploads/` are filesystem URLs and cannot work after deployment. The migration script uploads each corresponding file from `server/public/uploads/` to Blob and replaces its URL in Atlas.
