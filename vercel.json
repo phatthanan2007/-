@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm install --include=optional",
+  "installCommand": "npm install --include=optional --os=linux --cpu=x64",
   "buildCommand": "npm run build",
   "outputDirectory": "client/dist",
   "functions": {
